@@ -11,9 +11,12 @@ jobs:
       - name: Check Terraform Version
         id: terraform-version
         run: terraform --version
+      - name: Switch Directory
+        id: swtich-directory 
+        run: cd GCP-Projects
       - name: Init Terraform
         id: terraform-init
         run: terraform init
-      - name: List Directory
-        id: list-directory 
-        run: ls -lrtha
+      - name: Plan Terraform
+        id: plan-terraform
+        run: terraform plan
