@@ -14,3 +14,5 @@ jobs:
       - name: Init Terraform
         id: terraform-init
         run: cd GCP-Projects && terraform init && terraform plan
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
