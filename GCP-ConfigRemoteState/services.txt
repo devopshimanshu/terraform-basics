@@ -1,0 +1,24 @@
+
+resource "google_project_service" "gcp_resource_manager_api" {
+  project = lookup(var.project_id_list, var.project_list[count.index])
+  service = "cloudresourcemanager.googleapis.com"
+  count   = length(var.project_list)
+  timeouts {
+    create = "1m"
+    update = "2m"
+  }
+
+  disable_dependent_services = true
+}
+
+resource "google_project_service" "gcp_iam_api" {
+  project = lookup(var.project_id_list, var.project_list[count.index])
+  service = "iam.googleapis.com"
+  count   = length(var.project_list)
+  timeouts {
+    create = "1m"
+    update = "2m"
+  }
+
+  disable_dependent_services = true
+}

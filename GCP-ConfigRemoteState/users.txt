@@ -1,0 +1,6 @@
+resource "google_service_account" "service_account" {
+  project      = lookup(var.project_id_list, var.service_account_details[count.index].project_name)
+  account_id   = var.service_account_details[count.index].account_id
+  display_name = var.service_account_details[count.index].display_name
+  count        = length(var.service_account_details)
+}

@@ -1,0 +1,14 @@
+module "project-services" {
+  source  = "terraform-google-modules/project-factory/google//modules/project_services"
+  version = "10.1.1"
+
+  project_id = lookup(var.project_id_list, var.project_list[count.index])
+  count      = length(var.project_list)
+  activate_apis = [
+    "cloudresourcemanager.googleapis.com",
+    "iam.googleapis.com",
+  ]
+  depends_on = [
+    google_project.projects
+  ]
+}
